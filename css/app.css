@@ -1,0 +1,214 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-color: #9b9b9b;
+  --primary-hover: #398dd4;
+  --primary-active: #000000;
+  --line-color: #d6d6d6;
+  --underline-width: initial;
+  --underline-height: initial;
+  --underline-offset-x: initial;
+  --underline-offset-y: initial;
+}
+
+body {
+  font-family: "Arial", sans-serif;
+  background-color: white;
+}
+
+header {
+  margin-bottom: 50px;
+  padding: 30px 0 0 0;
+}
+
+.container {
+  width: 100%;
+  max-width: 1800px;
+  margin: 0 auto;
+  padding: 0 30px;
+}
+
+.menu {
+  padding: 0 10rem;
+  border-bottom: solid 2px var(--line-color);
+}
+
+.menu__list {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  list-style: none;
+}
+
+.menu__list::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 100%;
+  height: 2px;
+  width: var(--underline-width);
+  -webkit-transform: translateX(var(--underline-offset-x));
+  transform: translateX(var(--underline-offset-x));
+  background-color: var(--primary-active);
+  -webkit-transition: width 0.4s, transform 0.4s;
+  transition: width 0.4s, transform 0.4s;
+}
+
+.menu__link {
+  display: block;
+  padding: 0.5rem 0.2rem 0.8rem;
+  font-size: 1.5rem;
+  -webkit-transition: all 0.4s;
+  transition: all 0.4s;
+  color: var(--primary-color);
+  text-decoration: none;
+  letter-spacing: 1px;
+  position: relative;
+}
+
+.menu__link:hover,
+.menu__link:focus {
+  color: var(--primary-hover);
+}
+
+.menu__link:focus {
+  outline: none;
+}
+
+.menu__item.active .menu__link {
+  color: var(--primary-active);
+  cursor: default;
+}
+
+.tab__section {
+  display: none;
+}
+
+.tab__section.active {
+  display: block;
+}
+
+.tab__section h2 {
+  margin-bottom: 20px;
+  font-size: 30px;
+}
+
+.menu__bubble {
+  position: absolute;
+  background-color: var(--primary-active);
+  color: white;
+  padding: 15px;
+  border-radius: 3px;
+  text-align: center;
+  bottom: -33px;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+  padding: 0.2rem;
+  font-size: 12px;
+  display: inline-flex;
+  letter-spacing: 0;
+  white-space: nowrap;
+  visibility: hidden;
+  opacity: 0;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.menu__item.active .menu__bubble {
+  visibility: visible;
+  -webkit-transition: all 0.7s;
+  transition: all 0.7s;
+  opacity: 1;
+}
+
+.menu__bubble::after {
+  content: "";
+  position: absolute;
+  top: -9px;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent var(--primary-active) transparent;
+}
+
+@media (max-width: 1400px) {
+  .menu {
+    padding: 0 4rem;
+  }
+}
+
+@media (max-width: 1280px) {
+  .menu {
+    padding: 0 1rem;
+  }
+  .menu__link {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .menu {
+    border-bottom: none;
+    border-left: solid 2px var(--line-color);
+  }
+  .menu__list {
+    -webkit-flex-direction: column;
+    flex-direction: column;
+  }
+
+  .menu__list::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: inherit;
+    width: 2px;
+    left: -18px;
+    height: var(--underline-height);
+    -webkit-transform: translateX(0) translateY(var(--underline-offset-y));
+    transform: translateX(0) translateY(var(--underline-offset-y));
+    background-color: var(--primary-active);
+    -webkit-transition: width 0.4s, transform 0.4s;
+    transition: width 0.4s, transform 0.4s;
+  }
+
+  .menu__item {
+    width: fit-content;
+  }
+  .menu__link {
+    padding-bottom: 0.3rem;
+    padding-top: 0.3rem;
+  }
+
+  .menu__bubble {
+    left: inherit;
+    right: -10px;
+    bottom: inherit;
+    -webkit-transform: translateX(100%) translateY(-50%);
+    transform: translateX(100%) translateY(-50%);
+    top: 50%;
+  }
+
+  .menu__bubble::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: -9px;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent var(--primary-active) transparent transparent;
+  }
+}
